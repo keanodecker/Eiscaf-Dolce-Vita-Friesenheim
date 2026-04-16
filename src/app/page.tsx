@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import AnimationPlaceholder from "@/components/AnimationPlaceholder";
+import IceCreamAnimation from "@/components/IceCreamAnimation";
 import MenuSection from "@/components/MenuSection";
 import GallerySection from "@/components/GallerySection";
 import OpeningHours from "@/components/OpeningHours";
@@ -12,7 +12,7 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <AnimationPlaceholder />
+        <IceCreamAnimation />
         <MenuSection />
         <GallerySection />
         <OpeningHours />
