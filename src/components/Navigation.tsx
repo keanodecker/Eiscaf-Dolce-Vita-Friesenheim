@@ -8,7 +8,6 @@ const navLinks = [
   { href: "/galerie", label: "Galerie" },
   { href: "/speisekarte", label: "Speisekarte" },
   { href: "/ueber-uns", label: "Über uns" },
-  { href: "/kontakt", label: "Kontakt" },
 ]
 
 export default function Navigation() {
