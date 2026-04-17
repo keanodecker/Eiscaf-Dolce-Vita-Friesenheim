@@ -25,12 +25,11 @@ const allImages: GalleryImage[] = [
   // Süßes
   { src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=80", alt: "Frische Waffeln", category: "suesses", tall: true },
   { src: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80", alt: "Schokoladentorte", category: "suesses", tall: false },
-  { src: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80", alt: "Süße Desserts", category: "suesses", tall: false },
+  { src: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=80", alt: "Süße Desserts", category: "suesses", tall: false },
   { src: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=900&q=80", alt: "Eiswaffel mit Beeren", category: "suesses", tall: true },
   // Getränke
   { src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=900&q=80", alt: "Erfrischende Getränke", category: "getraenke", tall: false },
-  { src: "https://images.unsplash.com/photo-1518349619113-03114f06ac3a?w=900&q=80", alt: "Eiskaltes Getränk", category: "getraenke", tall: true },
-  { src: "https://images.unsplash.com/photo-1560508200-57785e9f95bc?w=900&q=80", alt: "Frische Limonade", category: "getraenke", tall: false },
+  { src: "https://images.unsplash.com/photo-1560508200-57785e9f95bc?w=900&q=80", alt: "Frische Limonade", category: "getraenke", tall: true },
 ]
 
 const FILTERS: { key: Category; label: string }[] = [
@@ -49,7 +48,7 @@ export default function GalleryFilter({ preview = false }: GalleryFilterProps) {
   const gridRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  const displayImages = preview ? allImages.slice(0, 10) : allImages
+  const displayImages = preview ? allImages.slice(0, 12) : allImages
 
   const handleFilter = useCallback((category: Category) => {
     if (!gridRef.current) return

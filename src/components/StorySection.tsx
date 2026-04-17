@@ -27,8 +27,8 @@ const stories: StoryItem[] = [
   {
     img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200&q=80",
     alt: "Familientradition seit 1987",
-    title: "Seit 1987 in der Familie",
-    text: "Giovanni Ferretti brachte die Kunst des Gelatos 1987 aus Neapel nach Friesenheim. Heute führt seine Tochter die Tradition fort — mit denselben Originalrezepten.",
+    title: "Seit über 20 Jahren in Friesenheim",
+    text: "Die Dolce-Vita-Familie brachte die Kunst des Gelatos nach Friesenheim. Heute führen wir die Tradition fort — mit denselben Originalrezepten und noch mehr Leidenschaft.",
   },
   {
     img: "https://images.unsplash.com/photo-1488900128323-21503983a07e?w=1200&q=80",

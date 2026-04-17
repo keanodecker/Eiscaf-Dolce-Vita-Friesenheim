@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
+import SpaghettiIce from "@/components/SpaghettiIce"
 
 const stories = [
   {
@@ -13,6 +14,7 @@ const stories = [
     title: "100% Biomilch",
     text: "Wir verarbeiten ausschließlich zertifizierte Biomilch aus der Region — für Eis das man schmeckt und verantworten kann.",
     cta: { label: "Zur Speisekarte", href: "/speisekarte" },
+    showSpaghetti: true,
   },
   {
     img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80",
@@ -21,6 +23,7 @@ const stories = [
     title: "Nachhaltig & Regional",
     text: "Von der Verpackung bis zur Zutat — wir denken in Kreisläufen und arbeiten mit regionalen Partnern zusammen.",
     cta: null,
+    showSpaghetti: false,
   },
   {
     img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
@@ -29,6 +32,7 @@ const stories = [
     title: "Ausgezeichnete Hygiene",
     text: "Regelmäßige unabhängige Prüfungen bestätigen unsere Spitzenposition in Sachen Sauberkeit und Qualität.",
     cta: null,
+    showSpaghetti: false,
   },
 ]
 
@@ -87,6 +91,7 @@ export default function CertificateStories() {
               isEven ? "" : "md:flex-row-reverse"
             }`}
           >
+            {/* Image side */}
             <div className="cert-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform">
               <Image
                 src={story.img}
@@ -98,16 +103,27 @@ export default function CertificateStories() {
               <div className="absolute inset-0 bg-black/10" />
             </div>
 
+            {/* Text side */}
             <div className="cert-text w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 py-16 md:py-24 bg-[--color-bg] will-change-transform">
               <span className="text-xs font-semibold tracking-widest text-[--color-accent] uppercase mb-3">
                 {story.badge}
               </span>
-              <h2
-                className="font-serif text-[--color-text] mb-5 leading-tight"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
-              >
-                {story.title}
-              </h2>
+
+              {/* Heading row — with optional SpaghettiIce alongside */}
+              <div className={`flex items-center gap-4 mb-5 ${story.showSpaghetti ? "justify-between" : ""}`}>
+                <h2
+                  className="font-serif text-[--color-text] leading-tight"
+                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+                >
+                  {story.title}
+                </h2>
+                {story.showSpaghetti && (
+                  <div className="shrink-0 w-[140px] h-[180px]">
+                    <SpaghettiIce />
+                  </div>
+                )}
+              </div>
+
               <p className="text-[--color-text-muted] text-base md:text-lg leading-relaxed max-w-md">
                 {story.text}
               </p>
