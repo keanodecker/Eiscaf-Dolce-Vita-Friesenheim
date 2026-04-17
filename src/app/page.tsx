@@ -3,9 +3,7 @@ import HeroSection from "@/components/HeroSection"
 import GoogleRatingSection from "@/components/GoogleRatingSection"
 import GalleryFilter from "@/components/GalleryFilter"
 import AboutSection from "@/components/AboutSection"
-import SpaghettiIce from "@/components/SpaghettiIce"
 import CertificateStories from "@/components/CertificateStories"
-import StorySection from "@/components/StorySection"
 import OpeningHours from "@/components/OpeningHours"
 import Footer from "@/components/Footer"
 import WhatsAppButton from "@/components/WhatsAppButton"
@@ -19,9 +17,7 @@ export default function Home() {
         <GoogleRatingSection />
         <GalleryFilter preview />
         <AboutSection />
-        <SpaghettiIce />
         <CertificateStories />
-        <StorySection />
         <OpeningHours />
       </main>
       <Footer />

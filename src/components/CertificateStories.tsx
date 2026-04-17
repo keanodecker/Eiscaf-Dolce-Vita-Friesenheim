@@ -4,17 +4,20 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
+import SpaghettiIce from "@/components/SpaghettiIce"
 
 const stories = [
   {
-    img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200&q=80",
-    alt: "Natur und frische Zutaten",
+    visual: "spaghetti" as const,
+    img: "",
+    alt: "",
     badge: "🥛 Zertifiziert",
     title: "100% Biomilch",
     text: "Wir verarbeiten ausschließlich zertifizierte Biomilch aus der Region — für Eis das man schmeckt und verantworten kann.",
     cta: { label: "Zur Speisekarte", href: "/speisekarte" },
   },
   {
+    visual: "image" as const,
     img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80",
     alt: "Nachhaltige Natur",
     badge: "🌿 Nachhaltig",
@@ -23,6 +26,7 @@ const stories = [
     cta: null,
   },
   {
+    visual: "image" as const,
     img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
     alt: "Saubere professionelle Küche",
     badge: "✅ Ausgezeichnet",
@@ -87,17 +91,28 @@ export default function CertificateStories() {
               isEven ? "" : "md:flex-row-reverse"
             }`}
           >
-            <div className="cert-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform">
-              <Image
-                src={story.img}
-                alt={story.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-black/10" />
+            {/* Visual side */}
+            <div
+              className="cert-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform flex items-center justify-center"
+              style={story.visual === "spaghetti" ? { background: "linear-gradient(160deg, #fff8f3 0%, #fef3ff 100%)" } : {}}
+            >
+              {story.visual === "spaghetti" ? (
+                <SpaghettiIce />
+              ) : (
+                <>
+                  <Image
+                    src={story.img}
+                    alt={story.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-black/10" />
+                </>
+              )}
             </div>
 
+            {/* Text side */}
             <div className="cert-text w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 py-16 md:py-24 bg-[--color-bg] will-change-transform">
               <span className="text-xs font-semibold tracking-widest text-[--color-accent] uppercase mb-3">
                 {story.badge}

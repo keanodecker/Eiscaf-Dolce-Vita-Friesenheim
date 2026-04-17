@@ -7,16 +7,15 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Skip on touch-only devices
     if (window.matchMedia("(pointer: coarse)").matches) return
 
     const cursor = cursorRef.current
     if (!cursor) return
 
-    cursor.style.opacity = "1"
+    // Use GSAP xPercent/yPercent for centering so x/y don't conflict
+    gsap.set(cursor, { xPercent: -50, yPercent: -100, opacity: 1 })
     document.body.style.cursor = "none"
 
-    // Smooth cursor follow
     const onMove = (e: MouseEvent) => {
       gsap.to(cursor, {
         x: e.clientX,
@@ -27,11 +26,9 @@ export default function CustomCursor() {
       })
     }
 
-    // Scale up over interactive elements
     const onEnter = () => gsap.to(cursor, { scale: 1.4, duration: 0.2, ease: "back.out(2)" })
     const onLeave = () => gsap.to(cursor, { scale: 1, duration: 0.2, ease: "power2.out" })
 
-    // Green ice cream scoop on click
     const onClick = (e: MouseEvent) => {
       const scoop = document.createElement("div")
       Object.assign(scoop.style, {
@@ -46,12 +43,6 @@ export default function CustomCursor() {
         pointerEvents: "none",
         zIndex: "99997",
         transform: "translate(-50%, -50%) scale(0)",
-        fontSize: "14px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "rgba(255,255,255,0.6)",
-        fontWeight: "bold",
       })
       document.body.appendChild(scoop)
 
@@ -60,13 +51,11 @@ export default function CustomCursor() {
         .to(scoop, { y: -60, opacity: 0, scale: 0.7, duration: 0.55, ease: "power2.in" }, "+=0.1")
     }
 
-    // Hide cursor when leaving window
     const onOut = (e: MouseEvent) => {
       if (!e.relatedTarget) gsap.to(cursor, { opacity: 0, duration: 0.2 })
     }
     const onIn = () => gsap.to(cursor, { opacity: 1, duration: 0.2 })
 
-    // Attach interactive element listeners
     const attachHover = () => {
       document.querySelectorAll<HTMLElement>("a, button, [role='button']").forEach((el) => {
         el.addEventListener("mouseenter", onEnter)
@@ -106,7 +95,6 @@ export default function CustomCursor() {
         zIndex: 99999,
         fontSize: "30px",
         lineHeight: 1,
-        transform: "translate(-50%, -100%)",
         userSelect: "none",
         willChange: "transform",
       }}
