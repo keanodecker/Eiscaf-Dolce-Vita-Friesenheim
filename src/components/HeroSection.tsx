@@ -3,14 +3,12 @@
 import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { gsap } from "@/lib/gsap"
-import GoogleRating from "@/components/GoogleRating"
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLAnchorElement>(null)
-  const badgeRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -20,7 +18,6 @@ export default function HeroSection() {
       gsap.from(titleRef.current, { y: 60, opacity: 0, duration: 1.1, ease: "power4.out", delay: 0.3 })
       gsap.from(subtitleRef.current, { y: 40, opacity: 0, duration: 0.9, ease: "power3.out", delay: 0.7 })
       gsap.from(ctaRef.current, { y: 30, opacity: 0, duration: 0.7, ease: "power3.out", delay: 1.0 })
-      gsap.from(badgeRef.current, { y: 20, opacity: 0, duration: 0.7, ease: "power3.out", delay: 1.2 })
     }, sectionRef)
 
     return () => ctx.revert()
@@ -59,15 +56,12 @@ export default function HeroSection() {
         </p>
         <a
           ref={ctaRef}
-          href="#galerie"
+          href="/galerie"
           className="inline-block px-8 py-4 rounded-full border-2 border-white text-white font-medium text-sm tracking-wide backdrop-blur-sm bg-white/10 hover:bg-[--color-accent] hover:border-[--color-accent]"
           style={{ transition: "background 0.3s, border-color 0.3s" }}
         >
           Entdecken
         </a>
-        <div ref={badgeRef} className="mt-6 flex justify-center">
-          <GoogleRating theme="light" />
-        </div>
       </div>
     </section>
   )

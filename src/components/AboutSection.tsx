@@ -12,17 +12,12 @@ export default function AboutSection() {
     if (reduced) return
 
     const ctx = gsap.context(() => {
-      gsap.from(".about-title", {
-        y: 50, opacity: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } as ScrollTrigger.Vars,
-      })
-      gsap.from(".about-text", {
-        y: 40, opacity: 0, duration: 0.9, delay: 0.15, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } as ScrollTrigger.Vars,
-      })
-      gsap.from(".about-cta", {
-        y: 30, opacity: 0, duration: 0.7, delay: 0.3, ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } as ScrollTrigger.Vars,
+      gsap.from(".about-el", {
+        y: 40, opacity: 0, stagger: 0.15, duration: 0.9, ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        } as ScrollTrigger.Vars,
       })
     }, sectionRef)
 
@@ -30,39 +25,28 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section
-      id="ueber-uns"
-      ref={sectionRef}
-      className="py-[120px] px-6 bg-[--color-bg]"
-    >
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="about-title text-xs font-semibold tracking-widest text-[--color-accent] uppercase mb-4">
+    <section ref={sectionRef} className="py-20 px-6 bg-pink-50/40">
+      <div className="max-w-2xl mx-auto text-center">
+        <p className="about-el text-xs font-semibold tracking-widest text-[--color-accent] uppercase mb-4">
           Über uns
         </p>
         <h2
-          className="about-title font-serif text-[--color-text] mb-6 leading-tight"
-          style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+          className="about-el font-serif text-[--color-text] mb-5 leading-tight"
+          style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
         >
-          Seit 1987 ein Stück
-          <br />
-          Friesenheim
+          Seit über 20 Jahren Friesenheims Eisdielen-Familie
         </h2>
-        <p className="about-text text-[--color-text-muted] text-base md:text-lg leading-relaxed mb-4">
-          Was als kleiner Familienbetrieb begann, ist heute ein fester Teil
-          unserer Gemeinde. Jeden Tag bereiten wir unser Eis frisch zu —
-          mit Zutaten aus der Region, überlieferten Rezepten und echter
-          Handarbeit.
-        </p>
-        <p className="about-text text-[--color-text-muted] text-base md:text-lg leading-relaxed mb-10">
-          Kein Industrieeis. Keine Kompromisse. Nur das Beste für unsere Gäste.
+        <p className="about-el text-[--color-text-muted] text-base md:text-lg leading-relaxed mb-8">
+          Seit über 20 Jahren verwöhnen wir Friesenheim mit handgemachtem Eis aus regionalen Zutaten.
+          Was als Familientraum begann, ist heute eine Tradition — täglich frisch zubereitet,
+          mit Leidenschaft und ohne Kompromisse.
         </p>
         <Link
           href="/ueber-uns"
-          className="about-cta inline-flex items-center gap-2 text-sm font-semibold text-[--color-accent] hover:gap-4 group"
-          style={{ transition: "gap 0.3s" }}
+          className="about-el inline-flex items-center gap-2 px-7 py-3 rounded-full border-2 border-[--color-accent] text-[--color-accent] font-semibold text-sm hover:bg-[--color-accent] hover:text-white"
+          style={{ transition: "background-color 0.3s, color 0.3s" }}
         >
-          Unsere Geschichte entdecken
-          <span className="group-hover:translate-x-1" style={{ transition: "transform 0.3s" }}>→</span>
+          Mehr über uns →
         </Link>
       </div>
     </section>

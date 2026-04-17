@@ -117,6 +117,20 @@ export default function KontaktPage() {
                   </a>
                 </div>
               </li>
+
+              <li className="flex items-start gap-3">
+                <span className="text-lg mt-0.5">✉️</span>
+                <div>
+                  <p className="font-semibold text-[--color-text] mb-0.5">E-Mail</p>
+                  <a
+                    href="mailto:eiscafe.dolcevita.salinco@gmail.com"
+                    className="hover:text-[--color-accent] break-all"
+                    style={{ transition: "color 0.3s" }}
+                  >
+                    eiscafe.dolcevita.salinco@gmail.com
+                  </a>
+                </div>
+              </li>
             </ul>
 
             <a

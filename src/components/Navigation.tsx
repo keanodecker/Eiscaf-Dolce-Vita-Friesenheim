@@ -5,9 +5,9 @@ import Link from "next/link"
 import { gsap } from "@/lib/gsap"
 
 const navLinks = [
-  { href: "#galerie", label: "Galerie" },
+  { href: "/galerie", label: "Galerie" },
+  { href: "/speisekarte", label: "Speisekarte" },
   { href: "/ueber-uns", label: "Über uns" },
-  { href: "#oeffnungszeiten", label: "Öffnungszeiten" },
   { href: "/kontakt", label: "Kontakt" },
 ]
 
