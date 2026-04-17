@@ -50,6 +50,7 @@ const galleryImages = [
 export default function GallerySection() {
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -57,41 +58,62 @@ export default function GallerySection() {
 
     const ctx = gsap.context(() => {
       if (!reduced) {
-        // Character stagger for title
-        gsap.from(".gallery-char", {
-          opacity: 0,
-          y: 50,
-          stagger: 0.05,
-          duration: 0.6,
-          ease: "power2.out",
+        // Title line wipe-in
+        gsap.from(lineRef.current, {
+          scaleX: 0,
+          duration: 1.2,
+          ease: "power3.inOut",
+          transformOrigin: "left center",
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top 85%",
           } as ScrollTrigger.Vars,
         })
 
-        // Grid items stagger
-        gsap.from(".gallery-item", {
-          y: 80,
+        // Character stagger for title
+        gsap.from(".gallery-char", {
           opacity: 0,
-          scale: 0.95,
-          stagger: 0.08,
-          duration: 0.8,
-          ease: "power2.out",
+          y: 60,
+          rotateX: -90,
+          stagger: 0.045,
+          duration: 0.7,
+          ease: "power3.out",
+          transformOrigin: "bottom center",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+          } as ScrollTrigger.Vars,
+        })
+
+        // Grid items: stagger reveal with clip-path wipe from bottom
+        gsap.from(".gallery-item", {
+          y: 100,
+          opacity: 0,
+          scale: 0.92,
+          stagger: {
+            amount: 0.9,
+            from: "start",
+          },
+          duration: 0.9,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: gridRef.current,
-            start: "top 85%",
+            start: "top 82%",
           } as ScrollTrigger.Vars,
         })
       }
     }, sectionRef)
 
-    // GSAP hover — event listeners need manual cleanup
-    const items = [...(gridRef.current?.querySelectorAll<HTMLElement>(".gallery-item") ?? [])]
+    // GSAP hover — manual cleanup (outside ScrollTrigger context)
+    const items = [
+      ...(gridRef.current?.querySelectorAll<HTMLElement>(".gallery-item") ?? []),
+    ]
     type Handler = { item: HTMLElement; enter: () => void; leave: () => void }
     const handlers: Handler[] = items.map((item) => {
-      const enter = () => gsap.to(item, { scale: 1.04, duration: 0.3, ease: "power2.out" })
-      const leave = () => gsap.to(item, { scale: 1, duration: 0.3, ease: "power2.out" })
+      const enter = () =>
+        gsap.to(item, { scale: 1.04, duration: 0.35, ease: "power2.out" })
+      const leave = () =>
+        gsap.to(item, { scale: 1, duration: 0.35, ease: "power2.out" })
       item.addEventListener("mouseenter", enter)
       item.addEventListener("mouseleave", leave)
       return { item, enter, leave }
@@ -109,19 +131,32 @@ export default function GallerySection() {
   return (
     <section id="galerie" ref={sectionRef} className="py-[120px] px-6 bg-[--color-bg]">
       <div className="max-w-6xl mx-auto">
-        <h2
-          ref={titleRef}
-          className="font-serif text-center mb-16 text-[--color-text]"
-          style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          aria-label="Einblicke"
-        >
-          {"Einblicke".split("").map((char, i) => (
-            <span key={i} className="gallery-char inline-block">
-              {char}
-            </span>
-          ))}
-        </h2>
 
+        {/* Title with decorative line */}
+        <div ref={titleRef} className="flex flex-col items-center mb-16">
+          <h2
+            className="font-serif text-[--color-text] mb-4"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+            aria-label="Einblicke"
+          >
+            {"Einblicke".split("").map((char, i) => (
+              <span
+                key={i}
+                className="gallery-char inline-block"
+                style={{ perspective: "400px" }}
+              >
+                {char}
+              </span>
+            ))}
+          </h2>
+          <div
+            ref={lineRef}
+            className="h-px bg-[--color-accent] w-24"
+            style={{ transformOrigin: "left center" }}
+          />
+        </div>
+
+        {/* Masonry grid */}
         <div
           ref={gridRef}
           className="columns-1 sm:columns-2 lg:columns-3 gap-3 space-y-3"
@@ -140,6 +175,8 @@ export default function GallerySection() {
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
+              {/* Subtle gradient for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>

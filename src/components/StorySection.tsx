@@ -54,25 +54,48 @@ export default function StorySection() {
         const textWrap = el.querySelector<HTMLElement>(".story-text")
         if (!imgWrap || !textWrap) return
 
-        const xOffset = isMobile ? 0 : 150
+        const xOffset = isMobile ? 0 : 120
         const trigger: ScrollTrigger.Vars = {
           trigger: el,
-          start: "top 80%",
-          end: "top 30%",
-          scrub: isMobile || reduced ? false : 1,
+          start: "top 82%",
+          end: "top 25%",
+          scrub: isMobile || reduced ? false : 1.2,
           once: isMobile || reduced,
         }
 
+        // Image: slide + subtle scale
         gsap.fromTo(
           imgWrap,
-          { x: reduced ? 0 : isEven ? -xOffset : xOffset, opacity: 0 },
-          { x: 0, opacity: 1, ease: "power2.out", duration: 1, scrollTrigger: trigger }
+          { x: reduced ? 0 : isEven ? -xOffset : xOffset, opacity: 0, scale: 0.96 },
+          { x: 0, opacity: 1, scale: 1, ease: "power3.out", duration: 1.2, scrollTrigger: trigger }
         )
+
+        // Text: slide opposite direction + words stagger via lines
         gsap.fromTo(
           textWrap,
           { x: reduced ? 0 : isEven ? xOffset : -xOffset, opacity: 0 },
-          { x: 0, opacity: 1, ease: "power2.out", duration: 1, scrollTrigger: trigger }
+          { x: 0, opacity: 1, ease: "power3.out", duration: 1.2, scrollTrigger: trigger }
         )
+
+        // Additional: headline inside text rises up slightly after
+        const headline = textWrap.querySelector("h2")
+        const body = textWrap.querySelector("p")
+        if (headline && !reduced) {
+          gsap.fromTo(
+            headline,
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.1, ease: "power2.out",
+              scrollTrigger: { trigger: el, start: "top 78%", once: true } as ScrollTrigger.Vars }
+          )
+        }
+        if (body && !reduced) {
+          gsap.fromTo(
+            body,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, delay: 0.25, ease: "power2.out",
+              scrollTrigger: { trigger: el, start: "top 78%", once: true } as ScrollTrigger.Vars }
+          )
+        }
       })
     }, sectionRef)
 

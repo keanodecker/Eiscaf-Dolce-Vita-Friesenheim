@@ -6,7 +6,6 @@ import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const bgRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
@@ -20,38 +19,18 @@ export default function HeroSection() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     let scrollCtx: ReturnType<typeof gsap.context> | null = null
 
-    // Load animations — fire immediately on page load
+    // Intro text animations
     const introCtx = gsap.context(() => {
       if (reduced) return
-      gsap.from(titleRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 1.1,
-        ease: "power4.out",
-        delay: 0.4,
-      })
-      gsap.from(subtitleRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        delay: 0.7,
-      })
-      gsap.from(ctaRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 1.0,
-      })
+      gsap.from(titleRef.current, { y: 60, opacity: 0, duration: 1.1, ease: "power4.out", delay: 0.3 })
+      gsap.from(subtitleRef.current, { y: 40, opacity: 0, duration: 0.9, ease: "power3.out", delay: 0.6 })
+      gsap.from(ctaRef.current, { y: 30, opacity: 0, duration: 0.7, ease: "power3.out", delay: 0.9 })
     }, section)
 
-    // Scroll-driven video: pin the hero and advance video.currentTime with scroll
+    // Scroll-driven video playback
     const setupScrollVideo = () => {
       const duration = video.duration || 3
-      // 200 px scroll per second of video — adjust this number to taste
-      const scrollDist = Math.max(800, Math.ceil(duration * 200))
-
+      const scrollDist = Math.max(800, Math.ceil(duration * 220))
       video.currentTime = 0
 
       scrollCtx = gsap.context(() => {
@@ -62,7 +41,6 @@ export default function HeroSection() {
           pin: true,
           pinSpacing: true,
           onUpdate: (self) => {
-            // Scrub video frame to scroll progress
             video.currentTime = self.progress * duration
           },
         } as ScrollTrigger.StaticVars)
@@ -87,10 +65,7 @@ export default function HeroSection() {
       className="hero relative w-full h-screen overflow-hidden flex flex-col"
     >
       {/* Background image */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 scale-[1.05] will-change-transform"
-      >
+      <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=1920&q=80"
           alt="Handgemachtes Eis bei Eisdiele Milano"
@@ -101,38 +76,37 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Gradient: transparent in center (video area), dark at top (nav) + bottom (text) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/5 to-black/65 pointer-events-none" />
+      {/* Gradient: strong at top+bottom, open in center where video sits */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/70 pointer-events-none" />
 
       {/* Content column */}
       <div className="relative z-10 flex flex-col items-center justify-between h-full pt-[72px] pb-14 px-6">
 
-        {/* ── Video — upper area, overlaid on hero image ── */}
-        <div className="flex-1 flex items-center justify-center">
-          {/* Light disc behind video so mix-blend-mode:multiply works on any bg */}
-          <div
-            className="absolute rounded-full bg-white/20 backdrop-blur-[1px]"
-            style={{
-              width: "clamp(260px, 48vw, 580px)",
-              height: "clamp(260px, 48vw, 580px)",
-            }}
-          />
+        {/* ── Video overlay ── */}
+        <div className="flex-1 flex items-center justify-center w-full">
           <video
             ref={videoRef}
-            className="relative z-10"
-            style={{
-              width: "clamp(240px, 46vw, 560px)",
-              mixBlendMode: "multiply",
-            }}
             muted
             playsInline
             preload="auto"
+            style={{
+              width: "clamp(300px, 68vw, 800px)",
+              // Radial mask: fades edges → no hard white border
+              maskImage:
+                "radial-gradient(ellipse 72% 72% at 50% 50%, black 42%, rgba(0,0,0,0.7) 62%, transparent 80%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 72% 72% at 50% 50%, black 42%, rgba(0,0,0,0.7) 62%, transparent 80%)",
+              // multiply: white parts of video become transparent
+              mixBlendMode: "multiply",
+              // Pop the colors
+              filter: "brightness(1.45) saturate(1.25) contrast(1.05)",
+            }}
           >
             <source src="/eis-animation.mp4" type="video/mp4" />
           </video>
         </div>
 
-        {/* ── Text info — below the video ── */}
+        {/* ── Text below video ── */}
         <div className="text-center w-full max-w-2xl">
           <h1
             ref={titleRef}

@@ -1,10 +1,10 @@
 import Navigation from "@/components/Navigation"
 import HeroSection from "@/components/HeroSection"
-import StorySection from "@/components/StorySection"
-import HorizontalScroll from "@/components/HorizontalScroll"
 import GallerySection from "@/components/GallerySection"
+import StorySection from "@/components/StorySection"
 import MenuSection from "@/components/MenuSection"
 import OpeningHours from "@/components/OpeningHours"
+import HorizontalScroll from "@/components/HorizontalScroll"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -13,8 +13,8 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <StorySection />
         <GallerySection />
+        <StorySection />
         <MenuSection />
         <OpeningHours />
         <HorizontalScroll />
