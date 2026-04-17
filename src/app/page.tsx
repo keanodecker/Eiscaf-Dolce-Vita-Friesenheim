@@ -1,12 +1,13 @@
 import Navigation from "@/components/Navigation"
 import HeroSection from "@/components/HeroSection"
-import AnimationPin from "@/components/AnimationPin"
-import StorySection from "@/components/StorySection"
-import HorizontalScroll from "@/components/HorizontalScroll"
-import GallerySection from "@/components/GallerySection"
-import MenuSection from "@/components/MenuSection"
+import GoogleRatingSection from "@/components/GoogleRatingSection"
+import GalleryFilter from "@/components/GalleryFilter"
+import AboutSection from "@/components/AboutSection"
+import SpaghettiIce from "@/components/SpaghettiIce"
+import CertificateStories from "@/components/CertificateStories"
 import OpeningHours from "@/components/OpeningHours"
 import Footer from "@/components/Footer"
+import WhatsAppButton from "@/components/WhatsAppButton"
 
 export default function Home() {
   return (
@@ -14,14 +15,15 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <AnimationPin />
-        <StorySection />
-        <GallerySection />
-        <MenuSection />
+        <GoogleRatingSection />
+        <GalleryFilter preview />
+        <AboutSection />
+        <SpaghettiIce />
+        <CertificateStories />
         <OpeningHours />
-        <HorizontalScroll />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }

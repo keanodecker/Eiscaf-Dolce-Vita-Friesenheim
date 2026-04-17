@@ -1,15 +1,19 @@
 "use client"
 
-// ScrollSmoother (Club GSAP) is not available in the free tier.
-// Lenis provides equivalent smooth scrolling and integrates with GSAP ticker.
-
 import { useEffect, useCallback, type ReactNode } from "react"
+import { usePathname } from "next/navigation"
 import { ReactLenis, useLenis } from "lenis/react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 function GSAPBridge() {
   const onScroll = useCallback(() => ScrollTrigger.update(), [])
   const lenis = useLenis(onScroll)
+
+  // Reset to top on every page navigation
+  const pathname = usePathname()
+  useEffect(() => {
+    lenis?.scrollTo(0, { immediate: true })
+  }, [pathname, lenis])
 
   useEffect(() => {
     if (!lenis) return

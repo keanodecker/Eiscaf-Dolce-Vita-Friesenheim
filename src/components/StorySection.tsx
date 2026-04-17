@@ -54,12 +54,13 @@ export default function StorySection() {
         const textWrap = el.querySelector<HTMLElement>(".story-text")
         if (!imgWrap || !textWrap) return
 
-        const xOffset = isMobile ? 0 : 150
+        const xOffset = isMobile ? 0 : 80
+
         const trigger: ScrollTrigger.Vars = {
           trigger: el,
           start: "top 80%",
-          end: "top 30%",
-          scrub: isMobile || reduced ? false : 1,
+          end: "bottom 20%",
+          scrub: isMobile || reduced ? false : 2,
           once: isMobile || reduced,
         }
 
@@ -68,6 +69,7 @@ export default function StorySection() {
           { x: reduced ? 0 : isEven ? -xOffset : xOffset, opacity: 0 },
           { x: 0, opacity: 1, ease: "power2.out", duration: 1, scrollTrigger: trigger }
         )
+
         gsap.fromTo(
           textWrap,
           { x: reduced ? 0 : isEven ? xOffset : -xOffset, opacity: 0 },
@@ -80,19 +82,19 @@ export default function StorySection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-[--color-bg] overflow-hidden">
+    <section ref={sectionRef} className="bg-[--color-bg]">
       {stories.map((story, i) => {
         const isEven = i % 2 === 0
         return (
           <div
             key={story.title}
             ref={(el) => { itemRefs.current[i] = el }}
-            className={`story-item flex flex-col md:flex-row items-stretch min-h-[60vh] ${
+            className={`flex flex-col md:flex-row items-stretch min-h-[100vh] ${
               isEven ? "" : "md:flex-row-reverse"
             }`}
           >
             {/* Image */}
-            <div className="story-img relative w-full md:w-1/2 min-h-[40vh] md:min-h-full will-change-transform">
+            <div className="story-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform">
               <Image
                 src={story.img}
                 alt={story.alt}
