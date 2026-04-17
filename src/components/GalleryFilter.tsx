@@ -29,8 +29,7 @@ const allImages: GalleryImage[] = [
   { src: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=900&q=80", alt: "Eiswaffel mit Beeren", category: "suesses", tall: true },
   // Getränke
   { src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=900&q=80", alt: "Erfrischende Getränke", category: "getraenke", tall: false },
-  { src: "https://images.unsplash.com/photo-1518349619113-03114f06ac3a?w=900&q=80", alt: "Eiskaltes Getränk", category: "getraenke", tall: true },
-  { src: "https://images.unsplash.com/photo-1560508200-57785e9f95bc?w=900&q=80", alt: "Frische Limonade", category: "getraenke", tall: false },
+  { src: "https://images.unsplash.com/photo-1560508200-57785e9f95bc?w=900&q=80", alt: "Frische Limonade", category: "getraenke", tall: true },
 ]
 
 const FILTERS: { key: Category; label: string }[] = [

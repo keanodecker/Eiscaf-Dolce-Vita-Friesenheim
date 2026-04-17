@@ -8,31 +8,31 @@ import SpaghettiIce from "@/components/SpaghettiIce"
 
 const stories = [
   {
-    visual: "spaghetti" as const,
-    img: "",
-    alt: "",
+    img: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200&q=80",
+    alt: "Natur und frische Zutaten",
     badge: "🥛 Zertifiziert",
     title: "100% Biomilch",
     text: "Wir verarbeiten ausschließlich zertifizierte Biomilch aus der Region — für Eis das man schmeckt und verantworten kann.",
     cta: { label: "Zur Speisekarte", href: "/speisekarte" },
+    showSpaghetti: true,
   },
   {
-    visual: "image" as const,
     img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80",
     alt: "Nachhaltige Natur",
     badge: "🌿 Nachhaltig",
     title: "Nachhaltig & Regional",
     text: "Von der Verpackung bis zur Zutat — wir denken in Kreisläufen und arbeiten mit regionalen Partnern zusammen.",
     cta: null,
+    showSpaghetti: false,
   },
   {
-    visual: "image" as const,
     img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
     alt: "Saubere professionelle Küche",
     badge: "✅ Ausgezeichnet",
     title: "Ausgezeichnete Hygiene",
     text: "Regelmäßige unabhängige Prüfungen bestätigen unsere Spitzenposition in Sachen Sauberkeit und Qualität.",
     cta: null,
+    showSpaghetti: false,
   },
 ]
 
@@ -91,25 +91,16 @@ export default function CertificateStories() {
               isEven ? "" : "md:flex-row-reverse"
             }`}
           >
-            {/* Visual side */}
-            <div
-              className="cert-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform flex items-center justify-center"
-              style={story.visual === "spaghetti" ? { background: "linear-gradient(160deg, #fff8f3 0%, #fef3ff 100%)" } : {}}
-            >
-              {story.visual === "spaghetti" ? (
-                <SpaghettiIce />
-              ) : (
-                <>
-                  <Image
-                    src={story.img}
-                    alt={story.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-black/10" />
-                </>
-              )}
+            {/* Image side */}
+            <div className="cert-img relative w-full md:w-1/2 min-h-[50vh] md:min-h-full will-change-transform">
+              <Image
+                src={story.img}
+                alt={story.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-black/10" />
             </div>
 
             {/* Text side */}
@@ -117,12 +108,22 @@ export default function CertificateStories() {
               <span className="text-xs font-semibold tracking-widest text-[--color-accent] uppercase mb-3">
                 {story.badge}
               </span>
-              <h2
-                className="font-serif text-[--color-text] mb-5 leading-tight"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
-              >
-                {story.title}
-              </h2>
+
+              {/* Heading row — with optional SpaghettiIce alongside */}
+              <div className={`flex items-center gap-4 mb-5 ${story.showSpaghetti ? "justify-between" : ""}`}>
+                <h2
+                  className="font-serif text-[--color-text] leading-tight"
+                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)" }}
+                >
+                  {story.title}
+                </h2>
+                {story.showSpaghetti && (
+                  <div className="shrink-0 w-[140px] h-[180px]">
+                    <SpaghettiIce />
+                  </div>
+                )}
+              </div>
+
               <p className="text-[--color-text-muted] text-base md:text-lg leading-relaxed max-w-md">
                 {story.text}
               </p>
