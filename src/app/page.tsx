@@ -1,10 +1,12 @@
-import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
-import IceCreamAnimation from "@/components/IceCreamAnimation";
-import MenuSection from "@/components/MenuSection";
-import GallerySection from "@/components/GallerySection";
-import OpeningHours from "@/components/OpeningHours";
-import Footer from "@/components/Footer";
+import Navigation from "@/components/Navigation"
+import HeroSection from "@/components/HeroSection"
+import AnimationPin from "@/components/AnimationPin"
+import StorySection from "@/components/StorySection"
+import HorizontalScroll from "@/components/HorizontalScroll"
+import GallerySection from "@/components/GallerySection"
+import MenuSection from "@/components/MenuSection"
+import OpeningHours from "@/components/OpeningHours"
+import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
@@ -12,12 +14,14 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <IceCreamAnimation />
-        <MenuSection />
+        <AnimationPin />
+        <StorySection />
         <GallerySection />
+        <MenuSection />
         <OpeningHours />
+        <HorizontalScroll />
       </main>
       <Footer />
     </>
-  );
+  )
 }

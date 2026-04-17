@@ -1,3 +1,8 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+import { gsap, ScrollTrigger } from "@/lib/gsap"
+
 function InstagramIcon() {
   return (
     <svg
@@ -16,7 +21,7 @@ function InstagramIcon() {
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
-  );
+  )
 }
 
 function FacebookIcon() {
@@ -35,25 +40,48 @@ function FacebookIcon() {
     >
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
-  );
+  )
 }
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduced) return
+
+    const ctx = gsap.context(() => {
+      gsap.from(".footer-col", {
+        y: 60,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 85%",
+        } as ScrollTrigger.Vars,
+      })
+    }, footerRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <footer id="kontakt" className="bg-[#1a1a1a] text-white px-6 py-16">
+    <footer id="kontakt" ref={footerRef} className="bg-[#1a1a1a] text-white px-6 py-16">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Logo + About */}
-          <div>
+          <div className="footer-col will-change-transform">
             <p className="font-serif text-2xl mb-4">🍦 Eisdiele Milano</p>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
-              Handgemachtes Eis mit Leidenschaft seit 1987. Täglich frisch
-              zubereitet mit den besten Zutaten aus der Region.
+              Handgemachtes Eis mit Leidenschaft seit 1987. Täglich frisch zubereitet
+              mit den besten Zutaten aus der Region.
             </p>
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="footer-col will-change-transform">
             <h4 className="font-serif text-lg mb-4 text-white/90">Kontakt</h4>
             <ul className="space-y-3 text-sm text-white/60">
               <li className="flex items-start gap-2">
@@ -68,7 +96,8 @@ export default function Footer() {
                 <span>📞</span>
                 <a
                   href="tel:+4978218000"
-                  className="hover:text-white transition-colors duration-300"
+                  className="hover:text-white"
+                  style={{ transition: "color 0.3s" }}
                 >
                   +49 7821 8000
                 </a>
@@ -77,7 +106,8 @@ export default function Footer() {
                 <span>✉️</span>
                 <a
                   href="mailto:info@eisdiele-milano.de"
-                  className="hover:text-white transition-colors duration-300"
+                  className="hover:text-white"
+                  style={{ transition: "color 0.3s" }}
                 >
                   info@eisdiele-milano.de
                 </a>
@@ -86,16 +116,15 @@ export default function Footer() {
           </div>
 
           {/* Social */}
-          <div>
-            <h4 className="font-serif text-lg mb-4 text-white/90">
-              Folge uns
-            </h4>
+          <div className="footer-col will-change-transform">
+            <h4 className="font-serif text-lg mb-4 text-white/90">Folge uns</h4>
             <div className="flex items-center gap-4">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white"
+                style={{ transition: "color 0.3s, border-color 0.3s" }}
                 aria-label="Instagram"
               >
                 <InstagramIcon />
@@ -104,15 +133,14 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white"
+                style={{ transition: "color 0.3s, border-color 0.3s" }}
                 aria-label="Facebook"
               >
                 <FacebookIcon />
               </a>
             </div>
-            <p className="text-xs text-white/40 mt-6">
-              Impressum · Datenschutz
-            </p>
+            <p className="text-xs text-white/40 mt-6">Impressum · Datenschutz</p>
           </div>
         </div>
 
@@ -123,5 +151,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

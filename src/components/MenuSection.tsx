@@ -1,13 +1,20 @@
+"use client"
+
+// Preise sind NUR in dieser Section sichtbar — nicht in Navigation, Hero, Galerie oder Footer.
+
+import { useEffect, useRef } from "react"
+import { gsap, ScrollTrigger } from "@/lib/gsap"
+
 interface FlavorItem {
-  emoji: string;
-  name: string;
-  price: string;
+  emoji: string
+  name: string
+  price: string
 }
 
 interface MenuCard {
-  title: string;
-  subtitle: string;
-  flavors: FlavorItem[];
+  title: string
+  subtitle: string
+  flavors: FlavorItem[]
 }
 
 const menuCards: MenuCard[] = [
@@ -39,26 +46,56 @@ const menuCards: MenuCard[] = [
       { emoji: "🌺", name: "Passionsfrucht", price: "€ 1,60" },
     ],
   },
-];
+]
 
 export default function MenuSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduced) return
+
+    const ctx = gsap.context(() => {
+      gsap.from(".menu-card", {
+        y: 100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        } as ScrollTrigger.Vars,
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="speisekarte" className="py-[120px] px-6 bg-[--color-bg]">
+    <section
+      id="speisekarte"
+      ref={sectionRef}
+      className="menu-section py-[120px] px-6 bg-[--color-bg]"
+    >
       <div className="max-w-6xl mx-auto">
-        <h2 className="section-title font-serif">Unsere Sorten</h2>
+        <h2
+          className="font-serif text-center mb-4 text-[--color-text]"
+          style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+        >
+          Unsere Sorten
+        </h2>
+        <p className="text-center text-[--color-text-muted] mb-16 text-sm">
+          Alles handgemacht · Täglich frisch
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {menuCards.map((card) => (
-            <div
-              key={card.title}
-              className="glass-card p-8 hover:shadow-lg transition-all duration-300"
-            >
+            <div key={card.title} className="menu-card glass-card p-8 will-change-transform">
               <h3 className="font-serif text-2xl text-[--color-text] mb-1">
                 {card.title}
               </h3>
-              <p className="text-sm text-[--color-text-muted] mb-6">
-                {card.subtitle}
-              </p>
+              <p className="text-sm text-[--color-text-muted] mb-6">{card.subtitle}</p>
 
               <ul className="space-y-4">
                 {card.flavors.map((flavor) => (
@@ -81,5 +118,5 @@ export default function MenuSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
