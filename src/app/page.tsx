@@ -5,6 +5,7 @@ import GalleryFilter from "@/components/GalleryFilter"
 import AboutSection from "@/components/AboutSection"
 import SpaghettiIce from "@/components/SpaghettiIce"
 import CertificateStories from "@/components/CertificateStories"
+import StorySection from "@/components/StorySection"
 import OpeningHours from "@/components/OpeningHours"
 import Footer from "@/components/Footer"
 import WhatsAppButton from "@/components/WhatsAppButton"
@@ -20,6 +21,7 @@ export default function Home() {
         <AboutSection />
         <SpaghettiIce />
         <CertificateStories />
+        <StorySection />
         <OpeningHours />
       </main>
       <Footer />
