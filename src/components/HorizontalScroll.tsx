@@ -6,24 +6,22 @@ import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 const slides = [
   {
-    src: "https://images.unsplash.com/photo-1518349619113-03114f06ac3a?w=1400&q=85",
-    alt: "Eisbecher Nahaufnahme",
-    label: "Klassisch",
+    src: "https://images.unsplash.com/photo-1543353071-873f17a7a088?w=1400&q=85",
+    alt: "Bunte Eiskugeln und Eissorten",
+    label: "Eissorten",
+    sub: "Über 30 handgemachte Sorten",
   },
   {
     src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1400&q=85",
-    alt: "Bunte Eisstiele",
-    label: "Saisonal",
+    alt: "Waffeln und Kuchen",
+    label: "Waffeln & Kuchen",
+    sub: "Frisch gebacken — täglich",
   },
   {
-    src: "https://images.unsplash.com/photo-1567206563114-c179706e76a3?w=1400&q=85",
-    alt: "Eisbecher mit Toppings",
-    label: "Creations",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1400&q=85",
-    alt: "Eisgenuss im Sommer",
-    label: "Sorbets",
+    src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=1400&q=85",
+    alt: "Erfrischende Getränke",
+    label: "Erfrischungen",
+    sub: "Eiskalte Getränke für heiße Tage",
   },
 ]
 
@@ -81,14 +79,15 @@ export default function HorizontalScroll() {
               className="object-cover"
               sizes="85vw"
             />
-            {/* Label */}
-            <div className="absolute bottom-10 left-10 z-10">
-              <span className="font-serif text-white text-3xl md:text-5xl drop-shadow-lg">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <div className="absolute bottom-12 left-12 z-10">
+              <p className="text-white/70 text-sm font-medium tracking-widest uppercase mb-2">
+                {slide.sub}
+              </p>
+              <span className="font-serif text-white drop-shadow-lg" style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
                 {slide.label}
               </span>
             </div>
-            {/* Subtle gradient at bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
           </div>
         ))}
       </div>

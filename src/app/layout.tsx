@@ -17,12 +17,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Eisdiele Milano – Handgemachtes Eis seit 1987",
+  title: "Eiscafé Dolce Vita – Handgemachtes Eis seit 1987",
   description:
     "Frische Zutaten, klassische Rezepte, täglich neu. Besuche uns in Friesenheim und entdecke unsere handgemachten Eissorten.",
-  keywords: ["Eisdiele", "Eis", "Gelato", "Friesenheim", "Milano", "handgemacht"],
+  keywords: ["Eiscafé", "Eis", "Gelato", "Friesenheim", "Dolce Vita", "handgemacht"],
   openGraph: {
-    title: "Eisdiele Milano – Handgemachtes Eis seit 1987",
+    title: "Eiscafé Dolce Vita – Handgemachtes Eis seit 1987",
     description: "Frische Zutaten. Klassische Rezepte. Jeden Tag neu.",
     type: "website",
   },

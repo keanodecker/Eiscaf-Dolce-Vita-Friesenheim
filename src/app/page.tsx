@@ -1,11 +1,12 @@
 import Navigation from "@/components/Navigation"
 import HeroSection from "@/components/HeroSection"
 import GallerySection from "@/components/GallerySection"
+import AboutSection from "@/components/AboutSection"
 import StorySection from "@/components/StorySection"
-import MenuSection from "@/components/MenuSection"
 import OpeningHours from "@/components/OpeningHours"
 import HorizontalScroll from "@/components/HorizontalScroll"
 import Footer from "@/components/Footer"
+import WhatsAppButton from "@/components/WhatsAppButton"
 
 export default function Home() {
   return (
@@ -14,12 +15,13 @@ export default function Home() {
       <main>
         <HeroSection />
         <GallerySection />
+        <AboutSection />
         <StorySection />
-        <MenuSection />
         <OpeningHours />
         <HorizontalScroll />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }
