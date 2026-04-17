@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 const stories = [
@@ -11,6 +12,7 @@ const stories = [
     badge: "🥛 Zertifiziert",
     title: "100% Biomilch",
     text: "Wir verarbeiten ausschließlich zertifizierte Biomilch aus der Region — für Eis das man schmeckt und verantworten kann.",
+    cta: { label: "Zur Speisekarte", href: "/speisekarte" },
   },
   {
     img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80",
@@ -18,6 +20,7 @@ const stories = [
     badge: "🌿 Nachhaltig",
     title: "Nachhaltig & Regional",
     text: "Von der Verpackung bis zur Zutat — wir denken in Kreisläufen und arbeiten mit regionalen Partnern zusammen.",
+    cta: null,
   },
   {
     img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
@@ -25,6 +28,7 @@ const stories = [
     badge: "✅ Ausgezeichnet",
     title: "Ausgezeichnete Hygiene",
     text: "Regelmäßige unabhängige Prüfungen bestätigen unsere Spitzenposition in Sachen Sauberkeit und Qualität.",
+    cta: null,
   },
 ]
 
@@ -107,6 +111,15 @@ export default function CertificateStories() {
               <p className="text-[--color-text-muted] text-base md:text-lg leading-relaxed max-w-md">
                 {story.text}
               </p>
+              {story.cta && (
+                <Link
+                  href={story.cta.href}
+                  className="mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full border-2 border-[--color-accent] text-[--color-accent] font-semibold text-sm hover:bg-[--color-accent] hover:text-white w-fit"
+                  style={{ transition: "background-color 0.3s, color 0.3s" }}
+                >
+                  {story.cta.label} →
+                </Link>
+              )}
             </div>
           </div>
         )

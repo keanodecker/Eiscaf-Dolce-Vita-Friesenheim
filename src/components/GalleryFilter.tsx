@@ -21,16 +21,16 @@ const allImages: GalleryImage[] = [
   { src: "https://images.unsplash.com/photo-1543353071-873f17a7a088?w=900&q=80", alt: "Bunte Eissorten", category: "eis", tall: false },
   { src: "https://images.unsplash.com/photo-1576506295286-5cda18df43e7?w=900&q=80", alt: "Softeis mit Toppings", category: "eis", tall: true },
   { src: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=900&q=80", alt: "Eisdiele Atmosphäre", category: "eis", tall: false },
-  { src: "https://images.unsplash.com/photo-1629461349098-9b5c7b37e21e?w=900&q=80", alt: "Gelato Kugeln", category: "eis", tall: false },
+  { src: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=900&q=80", alt: "Gelato Kugeln", category: "eis", tall: false },
   // Süßes
   { src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=80", alt: "Frische Waffeln", category: "suesses", tall: true },
-  { src: "https://images.unsplash.com/photo-1567206563114-c179706e76a3?w=900&q=80", alt: "Eisbecher mit Sahne", category: "suesses", tall: false },
+  { src: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=900&q=80", alt: "Schokoladentorte", category: "suesses", tall: false },
   { src: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80", alt: "Süße Desserts", category: "suesses", tall: false },
-  { src: "https://images.unsplash.com/photo-1488900128323-21503983a07e?w=900&q=80", alt: "Gelato Theke", category: "suesses", tall: true },
+  { src: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=900&q=80", alt: "Eiswaffel mit Beeren", category: "suesses", tall: true },
   // Getränke
   { src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=900&q=80", alt: "Erfrischende Getränke", category: "getraenke", tall: false },
   { src: "https://images.unsplash.com/photo-1518349619113-03114f06ac3a?w=900&q=80", alt: "Eiskaltes Getränk", category: "getraenke", tall: true },
-  { src: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=900&q=80", alt: "Fruchtige Drinks", category: "getraenke", tall: false },
+  { src: "https://images.unsplash.com/photo-1560508200-57785e9f95bc?w=900&q=80", alt: "Frische Limonade", category: "getraenke", tall: false },
 ]
 
 const FILTERS: { key: Category; label: string }[] = [
