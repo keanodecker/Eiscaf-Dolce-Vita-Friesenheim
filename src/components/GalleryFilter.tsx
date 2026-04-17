@@ -49,7 +49,7 @@ export default function GalleryFilter({ preview = false }: GalleryFilterProps) {
   const gridRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  const displayImages = preview ? allImages.slice(0, 10) : allImages
+  const displayImages = preview ? allImages.slice(0, 12) : allImages
 
   const handleFilter = useCallback((category: Category) => {
     if (!gridRef.current) return
