@@ -4,14 +4,17 @@ import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
-const MAPS_EMBED = "https://maps.google.com/maps?q=48.3750143,7.8753382&z=16&output=embed"
+const MAPS_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d7.8753382!3d48.3750143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47912de750b7ebe3%3A0xd0f3e78712f1fbef!2sEiscaf%C3%A9+Dolce+Vita!5e0!3m2!1sde!2sde"
 const MAPS_LINK = "https://www.google.com/maps/place/Eiscaf%C3%A9+Dolce+Vita/@48.3750143,7.8753382"
 
 const hours = [
-  { days: "Dienstag – Freitag", hours: "11:00 – 20:00 Uhr" },
-  { days: "Samstag – Sonntag", hours: "10:00 – 21:00 Uhr" },
-  { days: "Montag", hours: "Ruhetag" },
-  { days: "Feiertags", hours: "12:00 – 19:00 Uhr" },
+  { days: "Montag",               time: "11:30 – 20:00 Uhr", closed: false },
+  { days: "Dienstag",             time: "11:30 – 20:00 Uhr", closed: false },
+  { days: "Mittwoch",             time: "Ruhetag",            closed: true  },
+  { days: "Donnerstag",           time: "11:30 – 20:00 Uhr", closed: false },
+  { days: "Freitag",              time: "11:30 – 20:00 Uhr", closed: false },
+  { days: "Samstag",              time: "14:00 – 20:00 Uhr", closed: false },
+  { days: "Sonntag & Feiertage",  time: "14:00 – 20:00 Uhr", closed: false },
 ]
 
 export default function KontaktPage() {
@@ -93,11 +96,11 @@ export default function KontaktPage() {
                 <div>
                   <p className="font-semibold text-[--color-text] mb-0.5">Telefon</p>
                   <a
-                    href="tel:+4915202156548"
+                    href="tel:015202156548"
                     className="hover:text-[--color-accent]"
                     style={{ transition: "color 0.3s" }}
                   >
-                    +49 152 02156548
+                    015202156548
                   </a>
                 </div>
               </li>
@@ -150,18 +153,17 @@ export default function KontaktPage() {
           {/* Opening hours card */}
           <div className="contact-card glass-card p-10 will-change-transform">
             <h2 className="font-serif text-2xl text-[--color-text] mb-8">Öffnungszeiten</h2>
-            <ul className="space-y-5">
-              {hours.map(({ days, hours: time }) => (
+            <p className="text-xs text-[--color-text-muted] mb-5">Ab 30.03.2026</p>
+            <ul className="space-y-3">
+              {hours.map(({ days, time, closed }) => (
                 <li
                   key={days}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-b border-black/5 pb-4 last:border-0 last:pb-0"
+                  className="flex items-center justify-between gap-2 border-b border-black/5 pb-3 last:border-0 last:pb-0"
                 >
-                  <span className="text-sm text-[--color-text-muted] font-medium">{days}</span>
-                  <span
-                    className={`text-sm font-semibold ${
-                      time === "Ruhetag" ? "text-red-400" : "text-[--color-text]"
-                    }`}
-                  >
+                  <span className={`text-sm font-medium ${closed ? "text-red-400 line-through" : "text-[--color-text-muted]"}`}>
+                    {days}
+                  </span>
+                  <span className={`text-sm font-semibold ${closed ? "text-red-400" : "text-[--color-text]"}`}>
                     {time}
                   </span>
                 </li>

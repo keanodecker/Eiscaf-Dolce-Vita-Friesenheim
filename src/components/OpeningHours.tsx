@@ -4,19 +4,23 @@ import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 interface HoursRow {
-  days: string
-  hours: string
+  day: string
+  time: string
+  closed?: boolean
 }
 
 const hours: HoursRow[] = [
-  { days: "Montag – Freitag", hours: "11:00 – 20:00 Uhr" },
-  { days: "Samstag – Sonntag", hours: "10:00 – 21:00 Uhr" },
-  { days: "Feiertags", hours: "12:00 – 19:00 Uhr" },
+  { day: "Montag",            time: "11:30 – 20:00 Uhr" },
+  { day: "Dienstag",          time: "11:30 – 20:00 Uhr" },
+  { day: "Mittwoch",          time: "Ruhetag", closed: true },
+  { day: "Donnerstag",        time: "11:30 – 20:00 Uhr" },
+  { day: "Freitag",           time: "11:30 – 20:00 Uhr" },
+  { day: "Samstag",           time: "14:00 – 20:00 Uhr" },
+  { day: "Sonntag & Feiertage", time: "14:00 – 20:00 Uhr" },
 ]
 
-// Google Maps embed for Eiscafé Dolce Vita, Friesenheim
 const MAPS_EMBED =
-  "https://maps.google.com/maps?q=48.3750143,7.8753382&z=16&output=embed"
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d7.8753382!3d48.3750143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47912de750b7ebe3%3A0xd0f3e78712f1fbef!2sEiscaf%C3%A9+Dolce+Vita!5e0!3m2!1sde!2sde"
 const MAPS_LINK =
   "https://www.google.com/maps/place/Eiscaf%C3%A9+Dolce+Vita/@48.3750143,7.8753382"
 
@@ -58,14 +62,30 @@ export default function OpeningHours() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Hours Card */}
           <div ref={leftRef} className="glass-card p-10 will-change-transform">
-            <h3 className="font-serif text-xl text-[--color-text] mb-8 flex items-center gap-3">
+            <h3 className="font-serif text-xl text-[--color-text] mb-6 flex items-center gap-3">
               <span>🕐</span> Wir sind für dich da
             </h3>
-            <ul className="space-y-6">
-              {hours.map(({ days, hours: time }) => (
-                <li key={days} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 border-b border-black/5 pb-5 last:border-0 last:pb-0">
-                  <span className="text-sm text-[--color-text-muted] font-medium">{days}</span>
-                  <span className="text-sm font-semibold text-[--color-text]">{time}</span>
+            <p className="text-xs text-[--color-text-muted] mb-6">Ab 30.03.2026</p>
+            <ul className="space-y-3">
+              {hours.map(({ day, time, closed }) => (
+                <li
+                  key={day}
+                  className="flex items-center justify-between gap-2 border-b border-black/5 pb-3 last:border-0 last:pb-0"
+                >
+                  <span
+                    className={`text-sm font-medium ${
+                      closed ? "text-red-400 line-through" : "text-[--color-text-muted]"
+                    }`}
+                  >
+                    {day}
+                  </span>
+                  <span
+                    className={`text-sm font-semibold ${
+                      closed ? "text-red-400" : "text-[--color-text]"
+                    }`}
+                  >
+                    {time}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -88,13 +108,13 @@ export default function OpeningHours() {
             </div>
           </div>
 
-          {/* Interactive Google Map */}
-          <div ref={rightRef} className="rounded-2xl overflow-hidden will-change-transform" style={{ minHeight: "360px" }}>
+          {/* Google Maps */}
+          <div ref={rightRef} className="rounded-2xl overflow-hidden will-change-transform" style={{ minHeight: "420px" }}>
             <iframe
               src={MAPS_EMBED}
               width="100%"
               height="100%"
-              style={{ border: 0, display: "block", minHeight: "360px" }}
+              style={{ border: 0, display: "block", minHeight: "420px", borderRadius: "16px" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

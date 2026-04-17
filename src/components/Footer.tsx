@@ -4,16 +4,6 @@ import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 import GoogleRating from "@/components/GoogleRating"
 
-function InstagramIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
 function FacebookIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -63,7 +53,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:+4915202156548" className="hover:text-white" style={{ transition: "color 0.3s" }}>
+                <a href="tel:015202156548" className="hover:text-white" style={{ transition: "color 0.3s" }}>
                   +49 152 02156548
                 </a>
               </li>
@@ -75,6 +65,12 @@ export default function Footer() {
                   WhatsApp
                 </a>
               </li>
+              <li className="flex items-center gap-2">
+                <span>✉️</span>
+                <a href="mailto:eiscafe.dolcevita.salinco@gmail.com" className="hover:text-white break-all" style={{ transition: "color 0.3s" }}>
+                  eiscafe.dolcevita.salinco@gmail.com
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -82,10 +78,14 @@ export default function Footer() {
           <div className="footer-col will-change-transform">
             <h4 className="font-serif text-lg mb-4 text-white/90">Folge uns</h4>
             <div className="flex items-center gap-4 mb-6">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white" style={{ transition: "color 0.3s, border-color 0.3s" }} aria-label="Instagram">
-                <InstagramIcon />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white" style={{ transition: "color 0.3s, border-color 0.3s" }} aria-label="Facebook">
+              <a
+                href="https://www.facebook.com/Eiscaf%C3%A9-Dolce-Vita-Friesenheim-1696071923939466"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white"
+                style={{ transition: "color 0.3s, border-color 0.3s" }}
+                aria-label="Facebook"
+              >
                 <FacebookIcon />
               </a>
             </div>
@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-xs text-white/40">
-            © 2025 Eiscafé Dolce Vita · Friesenheim. Alle Rechte vorbehalten.
+            © 2026 Eiscafé Dolce Vita · Friesenheim. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>
