@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation"
 import HeroSection from "@/components/HeroSection"
-import AnimationPin from "@/components/AnimationPin"
 import StorySection from "@/components/StorySection"
 import HorizontalScroll from "@/components/HorizontalScroll"
 import GallerySection from "@/components/GallerySection"
@@ -14,7 +13,6 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <AnimationPin />
         <StorySection />
         <GallerySection />
         <MenuSection />
