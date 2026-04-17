@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const dmSerif = DM_Serif_Display({
@@ -40,6 +41,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)]">
         <SmoothScroll>{children}</SmoothScroll>
+        <CustomCursor />
       </body>
     </html>
   );
