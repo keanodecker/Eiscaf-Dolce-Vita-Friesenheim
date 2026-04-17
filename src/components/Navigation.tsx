@@ -8,7 +8,7 @@ const navLinks = [
   { href: "#galerie", label: "Galerie" },
   { href: "/ueber-uns", label: "Über uns" },
   { href: "#oeffnungszeiten", label: "Öffnungszeiten" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/kontakt", label: "Kontakt" },
 ]
 
 export default function Navigation() {
