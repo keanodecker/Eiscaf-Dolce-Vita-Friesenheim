@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/galerie", label: "Galerie" },
   { href: "/speisekarte", label: "Speisekarte" },
   { href: "/ueber-uns", label: "Über uns" },
+  { href: "/kontakt", label: "Kontakt" },
 ]
 
 export default function Navigation() {
@@ -35,7 +36,7 @@ export default function Navigation() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-white/20 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] border-b border-white/20 ${
         scrolled ? "bg-white/70 backdrop-blur-2xl shadow-sm" : "bg-white/60 backdrop-blur-xl"
       }`}
       style={{ transition: "background 0.3s, box-shadow 0.3s" }}

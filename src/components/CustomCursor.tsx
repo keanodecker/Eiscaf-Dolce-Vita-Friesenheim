@@ -16,10 +16,12 @@ export default function CustomCursor() {
     gsap.set(cursor, { xPercent: -50, yPercent: -100, opacity: 1 })
     document.body.style.cursor = "none"
 
+    // opacity: 1 on every move so cursor never gets stuck invisible
     const onMove = (e: MouseEvent) => {
       gsap.to(cursor, {
         x: e.clientX,
         y: e.clientY,
+        opacity: 1,
         duration: 0.18,
         ease: "power2.out",
         overwrite: true,
